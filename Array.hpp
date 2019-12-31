@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Container/Container.hpp"
+#include "Container.hpp"
 
 namespace container
 {
@@ -25,7 +25,7 @@ namespace container
 			memorySize_ = capacity_ * sizeof(O);
 			objects_ = new O[capacity_];
 
-			MemoryLog::accrue(memorySize_);
+			//MemoryLog::accrue(memorySize_);
 		}
 
 		void Initialize(I capacity) {
@@ -35,7 +35,7 @@ namespace container
 			Destroy();
 			objects_ = new O[capacity_];
 
-			MemoryLog::accrue(memorySize_);
+			//MemoryLog::accrue(memorySize_);
 		}
 
 		void Reset()
@@ -94,7 +94,7 @@ namespace container
 			return *(objects_ + index);
 		}
 
-		O* Get(I index)
+		O* Get(I index) const
 		{
 			if(index < 0)
 				index += capacity_;
@@ -104,17 +104,17 @@ namespace container
 			return objects_ + index;
 		}
 
-		O* GetStart()
+		O* GetStart() const
 		{
 			return objects_;
 		}
 
-		O* GetEnd()
+		O* GetEnd() const
 		{
 			return (objects_ + size_);
 		}
 
-		O* GetNext(O* object)
+		O* GetNext(O* object) const
 		{
 			auto index = object - objects_;
 			if(index >= size_ - 1)
@@ -133,12 +133,12 @@ namespace container
 			return capacity_;
 		}
 
-		unsigned long GetMemorySize()
+		unsigned long GetMemorySize() const
 		{
 			return size_ * sizeof(O);
 		}
 
-		virtual unsigned long GetMemoryCapacity()
+		virtual unsigned long GetMemoryCapacity() const
 		{
 			return capacity_ * sizeof(O);
 		}
