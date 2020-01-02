@@ -7,10 +7,10 @@ namespace container
 	{
 		ObjectType objects_[Capacity];
 
-public:
+	public:
 		Block() {}
 
-		ObjectType* Find(int index)
+		ObjectType* Find(int index) 
 		{
 			return objects_ + index;
 		}
@@ -20,12 +20,12 @@ public:
 			return objects_ + index;
 		}
 
-		ObjectType* GetStart()
+		ObjectType* GetStart() const
 		{
 			return objects_;
 		}
 
-		ObjectType* GetEnd()
+		ObjectType* GetEnd() const
 		{
 			return objects_ + Capacity;
 		}
